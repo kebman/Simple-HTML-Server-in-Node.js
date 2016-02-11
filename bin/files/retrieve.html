@@ -28,7 +28,7 @@ var btn = document.getElementById("btn1");
 var ajax = new XMLHttpRequest();
 
 // retrieve data 
-btn.onclick = function() {
+btn.onclick = function () {
 
 	// check server 
 	ajax.onreadystatechange = function () {
@@ -44,6 +44,8 @@ btn.onclick = function() {
 	// open channel and send handshake
 	ajax.open("GET", "http://127.0.0.1:1338/output", true);
 	ajax.send("getButton="+"get request");
+	
+	return false; // prevent page reload on click…
 
 }
 
