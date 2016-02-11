@@ -6,7 +6,7 @@ It can receive and handle POST requests and serve some dynamic data. On the clie
 Note: This code is meant for educational purposes to showcase Node.js and Express, and it's not meant for production. However it can still serve as a starting point if you're ready to put in some additional work. My first suggestion would be to change the standalone HTML files for ones generated with either Jade, Hogan or EJS.
 
 ## Installation
-Download the files. In the terminal, cd to the app directory (bin) and input:
+Download and extract the files. In the terminal, cd to the app directory (bin) and input:
 
 npm install
 
