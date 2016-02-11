@@ -2,7 +2,6 @@
 *	Test Server
 *	…that can receive and handle POST requests
 *	…and serve some dynamic data
-*	…now just add more features (both on the server or the client), and you have something presentable! :D
 */
 const express = require('express');
 const app = express();
@@ -10,13 +9,13 @@ const app = express();
 const hostname = '127.0.0.1';
 const port = 1338;
 
-const bodyparse = require('body-parser');
+const bodyparse = require('body-parser'); // to read input coming from the browser
 app.use(bodyparse.urlencoded({ extended: false }));
 
-// serve static HTML files from /:
+// serve standalone HTML files from /:
 app.use(express.static('files'));
 
-// logger (all requests goes through this route):
+// logger (all requests goes through this route first):
 app.use(function (req, res, next) {
 	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	console.log(ip, req.method, req.url);
@@ -33,19 +32,15 @@ function toJSONLocal (date) {
 // offer some dynamic (time) data to GET requests using AJAX
 app.get('/output', function (req, res) {
 	res.header("Content-Type", "text/plain");
-	var timestamp = toJSONLocal(new Date());
-	// var timestamp = new Date().toISOString()+"ulu time"; // ZULU time
-	// var timestamp = Date.now().toString(); // cuz send() only accepts strings
-	// var timestamp = (new Date()).getTime().toString(); // same thing…
-	// var timestamp = new Date; // same thing…
+	var timestamp = toJSONLocal(new Date()); // just a simple timestamp, so you can see that it updates
 	res.status(200).send(timestamp);
 });
 
 // react to POST requests:
 app.post('/', function (req, res, next) {
-	console.log(req.body);
+	console.log(req.body); // log out received data to the terminal
 	res.header("Content-Type", "text/plain");
-	res.send("Data Received: "+"\""+req.body.formValue+"\""); // gives "Error: Can't set headers after they are sent." but still works. :p
+	res.send("Data Received: "+"\""+req.body.formValue+"\""); // send back some data to confirm receival
 	next(); // sends output to next similar function–in this case the 404 func…
 });
 
