@@ -1,0 +1,20 @@
+{
+  "name": "servehtml",
+  "version": "0.0.1",
+  "description": "Simple HTML server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "html",
+    "server"
+  ],
+  "author": "kebman",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.1.5",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3"
+  }
+}
