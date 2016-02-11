@@ -1,7 +1,7 @@
 # Simple Static Web Server in Node.js
-A simple example of a static web server for HTML files made with Node.js and Express
+A simple example of a static web server for HTML files made with Node.js and Express.
 
-It can receive and handle POST requests and serve some dynamic data. Now just add more features, and you have something presentable! :D
+It can receive and handle POST requests and serve some dynamic data. On the client side, a few simple AJAX calls are used to handle input and output. Now just add more features, and you have something presentable! :D
 
 ## Installation
 Download the files. In the terminal, cd to the directory and input:
