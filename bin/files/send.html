@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Node.js HTML server</title>
+<meta charset="utf-8">
+<!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+</head>
+<body>
+	<header>
+		<h1>Node.js HTML server</h1>
+	</header>
+	<article>
+		<h1>Send stuff to server</h1>
+		<form id="form" method="post" action="/">
+			<input type="text" name="test">
+			<input type="submit" name="submit" value="Submit">
+		</form>
+	</article>
+	<footer>
+		<p><a href="/">« Home</a></p>
+	</footer>
+</body>
+<script>
+
+var form = document.getElementById("form");
+
+// object instansiation
+var ajax = new XMLHttpRequest();
+
+form.submit.addEventListener('click', function (e) {
+
+	// send to server:
+	ajax.open("POST", "http://127.0.0.1:1338/", true);
+	
+	// only if there's something to actually send…
+	if (form.test.value != "") {
+		// set header and send form data
+		ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		ajax.send("formValue="+form.test.value);
+		// reset form after data is sent
+		form.test.value = "";
+	}
+
+	// check server response (not really needed)
+	ajax.onreadystatechange = function () {
+		if (ajax.readyState == 4 && ajax.status == 200) {
+			console.log(ajax.responseText);
+		} 
+	}
+
+	// prevent site reload when button is clicked
+	e.preventDefault();
+
+}, false);
+
+</script>
+</html>
