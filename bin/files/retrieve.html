@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Node.js HTML server</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<header>
+		<h1>Node.js HTML server</h1>
+	</header>
+	<article>
+		<h1>Get data from server</h1>
+		<button id="btn1">Get</button>
+		<p id="test"></p>
+	</article>
+	<footer>
+		<p><a href="/">« Home</a></p>
+	</footer>
+</body>
+<script>
+
+// async data retrieval in client from server:
+var pub = document.getElementById("test");
+var btn = document.getElementById("btn1");
+
+// object instansiation
+var ajax = new XMLHttpRequest();
+
+// retrieve data 
+btn.onclick = function() {
+
+	// check server 
+	ajax.onreadystatechange = function () {
+
+		// and receive response text if it's ready
+		if (ajax.readyState === 4 && ajax.status === 200) {
+			pub.innerHTML = ajax.responseText;
+		} else {
+			pub.innerHTML = "Waiting for server response..."
+		}
+	}
+
+	// open channel and send handshake
+	ajax.open("GET", "http://127.0.0.1:1338/output", true);
+	ajax.send("getButton="+"get request");
+
+}
+
+</script>
+</html>
